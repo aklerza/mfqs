@@ -3,9 +3,9 @@
   "users": [
     {
       "id": 6504790029182,
-      "name": "Revan",
-      "email": "revanpoladov911@gmail.com",
-      "password": "$2b$04$HtsYNElsE0yqEXrKbKEwd.GRdsxEwQGIcpTS3.OVU41graNKsA2Z2",
+      "name": "name",
+      "email": "mail",
+      "password": "BCRYPT_HASHED_PASS",
       "duzsayi": 14,
       "isadmin": true
     }
