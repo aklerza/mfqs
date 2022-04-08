@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="az-Latn-AZ">
+<head>
+    <%- include('head.ejs') %>
+</head>
+<body style="">
+  <div class="imtahan-suallar container">
+    <br>
+      <h7 class="bg-dark p-1 rounded">Düzgün cavablandırılan quiz sayı(ümumi): <%=duzsayi%></h7>
+    <div class="imtahan-movzu">
+      <div class="imtahan-sual">
+      <h4><%- sual.sual %></h4>
+      <label><input type="radio" name="answer" value="a"><%- sual.a %></label><br>
+      <label><input type="radio" name="answer" value="b"><%- sual.b %></label><br>
+      <label><input type="radio" name="answer" value="c"><%- sual.c %></label><br>
+      <label><input type="radio" name="answer" value="d"><%- sual.d %></label><br>
+      <label><input type="radio" name="answer" value="e"><%- sual.e %></label><br>
+      </div>
+    </div>
+    <button id="submit" class="btn btn-secondary" onclick="goBack()">Geri dön</button>
+    <button id="submit" class="btn btn-primary" onclick="nextquiz()">Təsdiqlə</button>
+  </div>
+<footer class="text-center text-lg-start text-muted">
+  <%- include('footer.ejs') %>
+</footer>
+<script>
+  function goBack() {
+    window.location.href = "/panel"
+  }
+  function nextquiz() {
+    let answer = document.querySelector('input[name="answer"]:checked').value
+    const params = {
+      "mainId": <%= movzuId %>,
+      "id": <%= sual.id %>,
+      "answer": answer
+    }
+    const options = {
+      method: 'POST',
+      body: JSON.stringify(params),
+      headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    }
+    }
+    fetch('/quiz', options).then(function(response) {
+  response.text().then(function(dataFromServer) {
+    if (dataFromServer == 'true') {
+      document.body.style.background = "#053813";
+      document.body.style.transition = "0.2s";
+      location.reload();
+    } else {
+      document.body.style.background = "#38373b";
+      document.body.style.transition = "0.2s";
+      location.reload();
+    }
+  });
+});
+  }
+</script>
+</body>
+</html>

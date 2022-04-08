@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="az-Latn-AZ">
+<head>
+    <%- include('head.ejs') %>
+</head>
+<body class="non-overflow">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.4/umd/popper.min.js" integrity="sha512-+Tn2V/oN9O/kiaJg/1o5bETqyS35pMDJzkhkf8uvCzxmRox69AsWkSpBSMEGEe4EZp07Nunw712J3Xvh5Tti0w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.1/js/bootstrap.bundle.min.js" integrity="sha512-mULnawDVcCnsk9a4aG1QLZZ6rcce/jSzEGqUkeOLy0b6q0+T6syHrxlsAGH7ZVoqC93Pd0lBqd6WguPWih7VHA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <div class="row">
+  <div class="panel-sidebar sidebar">
+    <div class="panel-sidebar-logo">
+      <a href="#" class="red-text-color"><i class="fa-solid fa-shuttle-space"></i> Sınaq sistemi</a>
+    </div>
+    <div class="panel-sidebar-links">
+      <a href="/panel" class="red-text-color">Kabinetim</a><br>
+      <a href="/admin-panel/dashboard" class="red-text-color">İdarəetmə</a>
+      <!--<a href="#" class="red-text-color panel-sidebar-links-balans">Balansı artır</a> -->
+    </div>
+    <div class="panel-sidebar-profile dropdown">
+      <a href="#" role="button" id="profilemain" class="red-text-color panel-sidebar-profile-main dropdown-toggle" data-toggle="dropdown" aria-expanded="false" aria-haspopup="true">
+      <img src="/img/profile-photo.png" class="rounded-circle me-2" width="32px" height="32px">
+        <strong><%= user.name %></strong>
+      </a>
+      <ul class="dropdown-menu text-small shadow" aria-labelledby="profilemain">
+        <li>
+          <a href="/panel/logout" class="red-text-color">Çıxış</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="kabinet-main content col-md">
+    <div class="d-flex justify-content-center">
+    <div class="col-md-12 col-xl-4">
+  <div class="card comp-card">
+    <div class="card-body">
+      <div class="row align-items-center">
+        <div class="col">
+          <h6 class="m-b-25">Toplam giriş sayı</h6>
+          <h3 class="f-w-700"><%=serverStats.totalLogin %></h3>
+        </div>
+        <div class="col-auto">
+          <i class="fas fa-eye" style="font-size:3rem;"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  <div class="col-md-12 col-xl-4">
+  <div class="card comp-card">
+    <div class="card-body">
+      <div class="row align-items-center">
+        <div class="col">
+          <h6 class="m-b-25">Toplam həll edilən quiz</h6>
+          <h3 class="f-w-700"><%=serverStats.completedQuiz %></h3>
+        </div>
+        <div class="col-auto">
+          <i class="fas fa-bullseye" style="font-size:3rem;"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+</div>
+</div>
+  </div>
+</div>
+<footer class="text-center text-lg-start text-muted">
+  <%- include('footer.ejs') %>
+</footer>
+
+<script>
+  function sinaqAl(element) {
+    var id = element.id;
+    window.location.href = `/quiz?id=${id}`
+  };
+</script>
+</body>
+</html>

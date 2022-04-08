@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="az-Latn-AZ">
+<head>
+    <%- include('head.ejs') %>
+</head>
+<body class="non-overflow">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.4/umd/popper.min.js" integrity="sha512-+Tn2V/oN9O/kiaJg/1o5bETqyS35pMDJzkhkf8uvCzxmRox69AsWkSpBSMEGEe4EZp07Nunw712J3Xvh5Tti0w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.1/js/bootstrap.bundle.min.js" integrity="sha512-mULnawDVcCnsk9a4aG1QLZZ6rcce/jSzEGqUkeOLy0b6q0+T6syHrxlsAGH7ZVoqC93Pd0lBqd6WguPWih7VHA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <div class="row">
+  <div class="panel-sidebar sidebar">
+    <div class="panel-sidebar-logo">
+      <a href="#" class="red-text-color"><i class="fa-solid fa-shuttle-space"></i> Sınaq sistemi</a>
+    </div>
+    <div class="panel-sidebar-links">
+      <a href="/panel" class="red-text-color">Kabinetim</a>
+      <!--<a href="#" class="red-text-color panel-sidebar-links-balans">Balansı artır</a> -->
+    </div>
+    <div class="panel-sidebar-profile dropdown">
+      <a href="#" role="button" id="profilemain" class="red-text-color panel-sidebar-profile-main dropdown-toggle" data-toggle="dropdown" aria-expanded="false" aria-haspopup="true">
+      <img src="/img/profile-photo.png" class="rounded-circle me-2" width="32px" height="32px">
+        <strong><%= user.name %></strong>
+      </a>
+      <ul class="dropdown-menu text-small shadow" aria-labelledby="profilemain">
+        <li>
+          <a href="/panel/logout" class="red-text-color">Çıxış</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="kabinet-main content col-md">
+    <div class="container-fluid">
+      <h5>Quizlər</h5>
+      <div class="subjects row flex-row flex-nowrap">
+        <% sinaqlar.forEach(function(sinaq) { %>
+        <div class="page-subject col-8" style="cursor:pointer;" onclick="sinaqAl(this)" id="<%= sinaq.id %>">
+          <p><%= sinaq.name %></p>
+        </div>
+        <% }) %>
+      </div>
+    </div>
+  </div>
+  </div>
+<footer class="text-center text-lg-start text-muted">
+  <%- include('footer.ejs') %>
+</footer>
+
+<script>
+  function sinaqAl(element) {
+    var id = element.id;
+    window.location.href = `/quiz?id=${id}`
+  };
+</script>
+</body>
+</html>
